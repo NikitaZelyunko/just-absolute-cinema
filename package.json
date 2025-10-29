@@ -1,0 +1,29 @@
+{
+  "name": "just-absolute-cinema",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@nuxt/ui": "^3.3.7",
+    "@pinia/nuxt": "^0.11.2",
+    "nuxt": "^3.20.0",
+    "pinia": "^3.0.3",
+    "tailwindcss": "^4.1.16",
+    "vue": "^3.5.22",
+    "vue-router": "^4.6.3"
+  },
+  "devDependencies": {
+    "@prettier/plugin-oxc": "^0.0.4",
+    "@tailwindcss/vite": "^4.1.16",
+    "prettier": "^3.6.2",
+    "prettier-plugin-tailwindcss": "^0.7.1",
+    "typescript": "^5.9.3",
+    "vue-tsc": "^3.1.2"
+  }
+}
