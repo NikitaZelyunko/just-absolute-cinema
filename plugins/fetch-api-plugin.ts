@@ -4,7 +4,7 @@ export default defineNuxtPlugin({
   setup() {
     const baseApiProvider = $fetch.create({
       // baseURL: useRuntimeConfig().public.baseUrl ?? '/api',
-      baseURL: '/api',
+      baseURL: '/data-api',
     });
 
     return {

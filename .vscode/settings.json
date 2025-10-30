@@ -2,7 +2,7 @@
     "editor.formatOnSave": true,
     "css.customData": [".vscode/tailwind.json"],
     "files.associations": {
-        "*.css": "tailwindcss",
+        // "*.css": "tailwindcss",
     },
     "eslint.validate": [
         "javascript",

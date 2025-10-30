@@ -26,10 +26,11 @@ export default defineNuxtConfig({
   components: {
     dirs: [],
   },
-  modules: ['@nuxt/ui', '@pinia/nuxt'],
+  modules: ['@nuxt/ui', '@pinia/nuxt', '@nuxt/icon'],
   css: ['/app/assets/css/main.css'],
   ui: {
     fonts: false,
+    prefix: 'Nuxt',
   },
 
   vite: {
@@ -38,7 +39,8 @@ export default defineNuxtConfig({
 
   nitro: {
     routeRules: {
-      '/api/**': {
+      // Переименовал из-за проблем с запросом иконок
+      '/data-api/**': {
         proxy: `${import.meta.env.BASE_URL}/**`,
       },
     },
