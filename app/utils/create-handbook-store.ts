@@ -19,7 +19,7 @@ export function createHandbookStore<T extends { oid: string }, N extends string>
 
     async function initHandbookValues() {
       try {
-        const { data: valuesResponse } = await useAsyncData(() => getHandbookValues());
+        const { data: valuesResponse } = await useAsyncData(`${handbookName}-data`, () => getHandbookValues());
         handbookValues.value = valuesResponse.value ?? [];
       } catch {
         handbookValues.value = [];
