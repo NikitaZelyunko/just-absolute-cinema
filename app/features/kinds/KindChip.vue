@@ -5,12 +5,12 @@
 </template>
 <script lang="ts" setup>
 import { computed } from 'vue';
-import { useGenresStore } from './store/use-genres-store';
+import { useKindsStore } from './store/use-kinds';
 
 const props = defineProps<{ id: string }>();
 
-const genresStore = useGenresStore();
-const genresMap = await genresStore.getAsyncGenresMap();
+const kindsStore = useKindsStore();
+const genresMap = await kindsStore.getAsyncKinds();
 const chipTitle = computed(() => {
   const chip = genresMap.value.get(props.id);
   if (!chip) {

@@ -1,4 +1,8 @@
 <template>
+  <div class="text-3xl">
+    <slot name="title"></slot>
+  </div>
+
   <div class="cards-list">
     <ShowCarouselCard
       v-for="slide in slides"
@@ -6,14 +10,18 @@
       class="basis"
     ></ShowCarouselCard>
   </div>
+  <!-- Карусель вроде заработала -->
   <!-- <NuxtCarousel
     v-slot="{ item }"
     :items="slides"
     arrows
-    :ui="{ item: 'basis-auto' }"
-    class="mx-auto w-full"
+    prev-icon="i-lucide-chevron-left"
+    next-icon="i-lucide-chevron-right"
+    :prev="{ active: true }"
+    :ui="{ item: 'basis-auto', prev: 'sm:-start-0', next: 'sm:-end-0' }"
+    class="mx-auto w-full items-stretch"
   >
-    <ShowCarouselCard :slide="item" class="basis"></ShowCarouselCard>
+    <ShowCarouselCard :slide="item" class="h-full"></ShowCarouselCard>
   </NuxtCarousel> -->
 </template>
 
@@ -30,5 +38,6 @@ defineProps<{
 .cards-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  justify-items: center;
 }
 </style>

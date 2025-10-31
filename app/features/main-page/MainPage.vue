@@ -1,6 +1,8 @@
 <template>
   <div v-if="showCasesLoadingStatus !== 'pending'">
-    <ShowCarousel :slides="mainSlides"></ShowCarousel>
+    <ShowCarousel :slides="mainSlides">
+      <template #title>{{ showCases?.name }}</template>
+    </ShowCarousel>
   </div>
   <div v-else>Loading...</div>
 </template>

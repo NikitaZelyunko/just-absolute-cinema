@@ -1,29 +1,56 @@
 <template>
-  <div class="card-wrapper relative w-xs rounded-xl border-2 border-gray-200">
-    <div class="title px-2.5 text-black">{{ title }}</div>
-    <div class="flex h-48 w-xs flex-col items-center justify-start">
-      <img :src="pictureUrl" class="self-center" />
+  <div
+    class="card-wrapper relative w-xs justify-between rounded-xl border-2 border-gray-200"
+  >
+    <div>
+      <div class="title px-2.5 text-black">{{ title }}</div>
+      <div class="flex h-48 w-xs flex-col items-center justify-start">
+        <img :src="pictureUrl" class="self-center" />
+      </div>
+
+      <div class="px-2.5" v-if="genres.length">
+        <div class="text-xs">Жанры:</div>
+        <div class="flex flex-wrap">
+          <GenreChip
+            v-for="genre in genres"
+            :id="genre"
+            class="mr-1 mb-1"
+          ></GenreChip>
+        </div>
+      </div>
+      <div class="px-2.5" v-if="labels.length">
+        <div class="text-xs">Метки:</div>
+        <div class="flex flex-wrap">
+          <FilmLabel
+            v-for="labels in labels"
+            :id="labels"
+            class="mr-1 mb-1"
+          ></FilmLabel>
+        </div>
+      </div>
+      <nuxt-collapsible v-if="description" :open="descriptionShown">
+        <template #content>
+          <div class="description px-2.5">{{ description }}</div>
+        </template>
+      </nuxt-collapsible>
     </div>
 
-    <nuxt-collapsible v-if="description" :open="descriptionShown">
-      <nuxt-button
-        @click="toggleDescription"
-        variant="link"
-        trailing-icon="i-lucide-chevron-down"
-        class="collapse-button cursor-pointer"
-        :class="{ 'expanded-button': descriptionShown }"
-        >Подробнее</nuxt-button
-      >
-      <template #content>
-        <div class="description px-2.5">{{ description }}</div>
-      </template>
-    </nuxt-collapsible>
+    <nuxt-button
+      @click="toggleDescription"
+      variant="link"
+      trailing-icon="i-lucide-chevron-down"
+      class="collapse-button cursor-pointer"
+      :class="{ 'expanded-button': descriptionShown }"
+      >Подробнее</nuxt-button
+    >
   </div>
 </template>
 
 <script lang="ts" setup>
 import { computed, ref } from 'vue';
 import type { TSlide } from '../main-page/types/main-page-showcase';
+import GenreChip from '../genre/GenreChip.vue';
+import FilmLabel from '../label/FilmLabel.vue';
 
 const props = defineProps<{
   slide: TSlide;
@@ -49,6 +76,9 @@ const descriptionShown = ref(false);
 function toggleDescription() {
   descriptionShown.value = !descriptionShown.value;
 }
+
+const genres = computed(() => props.slide.title.genres);
+const labels = computed(() => props.slide.title.labels);
 </script>
 
 <style scoped lang="css">
@@ -62,11 +92,11 @@ function toggleDescription() {
 }
 
 .description {
-  bottom: 0;
   width: 100%;
   max-height: 100%;
   overflow: hidden;
 }
+
 .card-wrapper {
   display: flex;
   flex-direction: column;
