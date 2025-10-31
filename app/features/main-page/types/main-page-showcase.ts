@@ -1,10 +1,7 @@
-export type TCollection = {
-  oid: string;
-  name: string;
+import type { TCollectionResponse } from '../../collection/types/collection';
+
+export type TMainPageCollection = TCollectionResponse & {
   kind: 'vertical' | 'horizontal';
-  new_window: boolean;
-  substrate: boolean;
-  slug: string;
 };
 
 export type TAgePermission = 0 | 6 | 12 | 16 | 18;
@@ -60,6 +57,6 @@ export type TSlide = {
 export type TMainPageShowcase = {
   oid: string;
   name: string;
-  collections: TCollection[];
+  collections: TMainPageCollection[];
   slides: TSlide[];
 };

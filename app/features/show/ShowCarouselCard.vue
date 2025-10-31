@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="card-wrapper relative w-xs justify-between rounded-xl border-2 border-gray-200"
-  >
+  <div class="card-wrapper relative w-xs justify-between rounded-xl border-2 border-gray-200">
     <div>
       <div class="title px-2.5 text-black">{{ title }}</div>
       <div class="flex h-48 w-xs flex-col items-center justify-start">
@@ -11,21 +9,19 @@
       <div class="px-2.5" v-if="genres.length">
         <div class="text-xs">Жанры:</div>
         <div class="flex flex-wrap">
-          <GenreChip
-            v-for="genre in genres"
-            :id="genre"
-            class="mr-1 mb-1"
-          ></GenreChip>
+          <GenreChip v-for="genre in genres" :key="genre" :id="genre" class="mr-1 mb-1"></GenreChip>
         </div>
       </div>
       <div class="px-2.5" v-if="labels.length">
         <div class="text-xs">Метки:</div>
         <div class="flex flex-wrap">
-          <FilmLabel
-            v-for="labels in labels"
-            :id="labels"
-            class="mr-1 mb-1"
-          ></FilmLabel>
+          <FilmLabel v-for="label in labels" :key="label" :id="label" class="mr-1 mb-1"></FilmLabel>
+        </div>
+      </div>
+      <div class="px-2.5" v-if="kind">
+        <div class="text-xs">Тип:</div>
+        <div>
+          <KindChip :id="kind" class="mr-1 mb-1"></KindChip>
         </div>
       </div>
       <nuxt-collapsible v-if="description" :open="descriptionShown">
@@ -48,37 +44,38 @@
 
 <script lang="ts" setup>
 import { computed, ref } from 'vue';
-import type { TSlide } from '../main-page/types/main-page-showcase';
 import GenreChip from '../genre/GenreChip.vue';
 import FilmLabel from '../label/FilmLabel.vue';
+import type { TShowCard } from './types/show-card';
+import KindChip from '../kinds/KindChip.vue';
 
 const props = defineProps<{
-  slide: TSlide;
+  slide: TShowCard;
 }>();
 
 const pictureUrl = computed(() => {
-  const slideAssets = props.slide.title.assets;
+  const slideAssets = props.slide.assets;
   const pictureUrl = slideAssets.find((asset) => asset.asset_type === 'Banner');
   if (!pictureUrl) {
     return '';
   }
   const width = 320;
   const height = 180;
-  return pictureUrl.resize_url
-    .replace('{w}', width.toString())
-    .replace('{h}', height.toString());
+  return pictureUrl.resize_url.replace('{w}', width.toString()).replace('{h}', height.toString());
 });
 
-const title = computed(() => props.slide.title.title ?? '');
+const title = computed(() => props.slide.title);
 
-const description = computed(() => props.slide.title.synopsis ?? '');
+const description = computed(() => props.slide.description);
 const descriptionShown = ref(false);
 function toggleDescription() {
   descriptionShown.value = !descriptionShown.value;
 }
 
-const genres = computed(() => props.slide.title.genres);
-const labels = computed(() => props.slide.title.labels);
+const genres = computed(() => props.slide.genres);
+const labels = computed(() => props.slide.labels);
+
+const kind = computed(() => props.slide.kind);
 </script>
 
 <style scoped lang="css">

@@ -7,7 +7,8 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "lint": "eslint"
   },
   "dependencies": {
     "@iconify-json/lucide": "^1.2.71",
@@ -22,10 +23,14 @@
   },
   "devDependencies": {
     "@prettier/plugin-oxc": "^0.0.4",
+    "@stylistic/eslint-plugin": "^5.5.0",
     "@tailwindcss/vite": "^4.1.16",
+    "eslint": "^9.38.0",
+    "eslint-plugin-vue": "^10.5.1",
     "prettier": "^3.6.2",
     "prettier-plugin-tailwindcss": "^0.7.1",
     "typescript": "^5.9.3",
+    "typescript-eslint": "^8.46.2",
     "vue-tsc": "^3.1.2"
   }
 }

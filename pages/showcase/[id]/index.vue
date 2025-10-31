@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useRoute } from '#app';
 import { computed } from 'vue';
-import ShowCaseList from '~/app/features/showcase/ShowCaseList.vue';
+import ShowCaseList from '~/app/features/collection/CollectionContentList.vue';
 
 const route = useRoute();
 const routeId = computed(() => {
@@ -14,5 +14,5 @@ const routeId = computed(() => {
 </script>
 
 <template>
-  <ShowCaseList :collection-id="routeId"></ShowCaseList>
+  <ShowCaseList :collection-id="routeId" :show-link="false"></ShowCaseList>
 </template>

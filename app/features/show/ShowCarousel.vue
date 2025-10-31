@@ -4,11 +4,7 @@
   </div>
 
   <div class="cards-list">
-    <ShowCarouselCard
-      v-for="slide in slides"
-      :slide="slide"
-      class="basis"
-    ></ShowCarouselCard>
+    <ShowCarouselCard v-for="slide in slides" :key="slide.id" :slide="slide" class="basis"></ShowCarouselCard>
   </div>
   <!-- Карусель вроде заработала -->
   <!-- <NuxtCarousel
@@ -26,11 +22,11 @@
 </template>
 
 <script lang="ts" setup>
-import type { TSlide } from '../main-page/types/main-page-showcase';
 import ShowCarouselCard from './ShowCarouselCard.vue';
+import type { TShowCard } from './types/show-card';
 
 defineProps<{
-  slides: TSlide[];
+  slides: TShowCard[];
 }>();
 </script>
 

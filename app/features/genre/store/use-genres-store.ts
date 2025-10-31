@@ -13,7 +13,7 @@ export const useGenresStore = defineStore('genres-store', () => {
         getGenresFromApi(),
       );
       genres.value = genresResponse.value ?? [];
-    } catch (error) {
+    } catch {
       genres.value = [];
     }
 

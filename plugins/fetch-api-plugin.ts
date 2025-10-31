@@ -1,9 +1,8 @@
-import { defineNuxtPlugin, useRuntimeConfig } from '#app';
+import { defineNuxtPlugin } from '#app';
 
 export default defineNuxtPlugin({
   setup() {
     const baseApiProvider = $fetch.create({
-      // baseURL: useRuntimeConfig().public.baseUrl ?? '/api',
       baseURL: '/data-api',
     });
 

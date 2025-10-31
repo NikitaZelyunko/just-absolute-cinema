@@ -1,10 +1,6 @@
-import type {
-  TAgePermission,
-  TAsset,
-  TViewVersion,
-} from '../../main-page/types/main-page-showcase';
+import type { TAgePermission, TAsset, TViewVersion } from '../../main-page/types/main-page-showcase';
 
-export type TShowCase = {
+export type TCollectionContentResponse = {
   oid: string;
   url: string;
   title: string;
