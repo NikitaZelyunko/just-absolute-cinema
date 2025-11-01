@@ -10,9 +10,11 @@
         </template>
       </template>
     </ShowCarousel>
-    <NuxtButton class="self-center" v-if="nextButtonShown" @click="loadNewContent" :loading="collectionLoading">
-      Показать ещё
-    </NuxtButton>
+    <ClientOnly>
+      <NuxtButton class="self-center" v-if="nextButtonShown" @click="loadNewContent" :loading="collectionLoading">
+        Показать ещё
+      </NuxtButton>
+    </ClientOnly>
   </div>
   <div v-else>Loading...</div>
 </template>
@@ -25,7 +27,9 @@ import { getShowCaseCollectionContent } from './api/get-showcase-collection';
 import { getShowCaseCollection } from './api/get-showcase-collection-content';
 import type { TCollectionContentResponse } from './types/collection-content';
 
-const props = defineProps<{ collectionId: string; maxContentCount?: number; showLink: boolean }>();
+const props = withDefaults(defineProps<{ collectionId: string; maxContentCount?: number; showLink?: boolean }>(), {
+  showLink: false,
+});
 
 const { data: showCaseCollection, status: showCaseCollectionLoadingStatus } = useAsyncData(
   `collection-data-${props.collectionId}`,

@@ -14,5 +14,5 @@ const routeId = computed(() => {
 </script>
 
 <template>
-  <ShowCaseList :collection-id="routeId" :show-link="false"></ShowCaseList>
+  <ShowCaseList :collection-id="routeId"></ShowCaseList>
 </template>
